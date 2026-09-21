@@ -11,11 +11,16 @@
 ### Claim
 
 New glulam columns are positioned directly above existing load-bearing
-elements wherever possible, providing direct load paths.
+elements wherever possible, providing direct load paths. We will use the IFC model to investigate whether the spatial arrangement of the new glulam columns supports this claim.
+
+### Justification of claim
+
+This claim was selected because the alignment of the new and existing structural elements is an important part of the proposed structural concept. The report states that the new floor transfers loads through the CLT slabs, glulam beams and glulam columns into the existing concrete structure. Checking the spatial alignment between the new and existing columns is therefore a way of testing whether the BIM model reflects the stated structural concept.
 
 ### Source
 
 Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
+
 
 ## A2c – BPMN Diagram
 
