@@ -30,6 +30,45 @@ Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
 
 ## A2d - Scope the use case
 
+The tool will focus on the geometric relationship between new glulam
+columns and existing load-bearing columns.
+
+The tool will:
+
+1. Identify existing load-bearing columns.
+2. Identify new glulam columns.
+3. Extract their X/Y positions.
+4. Compare the positions of the columns.
+5. Calculate the horizontal offset.
+6. Flag columns that are not sufficiently aligned.
+
+The tool will not perform structural capacity calculations or determine
+whether a deviation is structurally acceptable. These decisions remain
+with the structural engineer.
+
 ![BPMN diagram](IMG/diagram%20edited.svg)
 
 [Open BPMN file](IMG/diagram%20edited.bpmn)
+
+
+## A2e – Tool Idea
+
+The proposed tool will be a Python-based IFC checking tool using
+IfcOpenShell.
+
+The tool will analyse the spatial relationship between existing
+load-bearing columns and new glulam columns.
+
+The output will identify whether each new column is aligned with an
+existing load-bearing element and flag cases that require further
+investigation.
+
+### Business value
+
+The tool can reduce manual checking of column positions and help
+identify potential load-path issues earlier in the design process.
+
+### Societal value
+
+The tool can support more reliable structural coordination and reduce
+the risk of errors in the digital structural model.
