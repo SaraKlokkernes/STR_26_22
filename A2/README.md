@@ -16,3 +16,7 @@ elements wherever possible, providing direct load paths.
 ### Source
 
 Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
+
+## A2c – BPMN Diagram
+
+![BPMN diagram](IMG/BPMN.svg)
