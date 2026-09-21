@@ -28,6 +28,8 @@ Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
 
 [Open BPMN file](IMG/diagram.bpmn)
 
-![BPMN diagram](IMG/diagram edited.svg)
+## A2d - Scope the use case
 
-[Open BPMN file](IMG/diagram edited.bpmn)
+![BPMN diagram](IMG/diagram%20edited.svg)
+
+[Open BPMN file](IMG/diagram%20edited.bpmn)
