@@ -28,6 +28,6 @@ Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
 
 [Open BPMN file](IMG/diagram.bpmn)
 
-![BPMN diagram](IMG/diagram (1).svg)
+![BPMN diagram](IMG/diagram edited.svg)
 
-[Open BPMN file](IMG/diagram (1).bpmn)
+[Open BPMN file](IMG/diagram edited.bpmn)
