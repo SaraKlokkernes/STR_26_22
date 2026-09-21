@@ -72,3 +72,28 @@ identify potential load-path issues earlier in the design process.
 
 The tool can support more reliable structural coordination and reduce
 the risk of errors in the digital structural model.
+
+
+## A2f – Information Requirements
+
+The tool needs information about the columns in the IFC model to check
+whether new glulam columns are positioned above existing load-bearing
+columns.
+
+| Information | IFC location | Present in model? | Knowledge |
+|---|---|---|---|
+| IfcColumn elements | IfcColumn | Yes | Know how to extract |
+| Column name/ID | IfcColumn attributes | To be verified | Need to learn |
+| X/Y location | ObjectPlacement / geometry | To be verified | Need to learn |
+| Material | Material association | To be verified | Need to learn |
+| Column type | Type information | To be verified | Need to learn |
+| Building storey | Spatial containment | To be verified | Need to learn |
+| Global coordinates | Placement/geometry | To be verified | Need to learn |
+
+The most important information is the column location and information that
+allows the tool to distinguish new glulam columns from existing
+load-bearing columns.
+
+The main technical knowledge needed is how to access the spatial
+coordinates and relevant properties of IfcColumn elements using
+IfcOpenShell.
