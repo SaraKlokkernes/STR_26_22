@@ -23,3 +23,14 @@ This indicates a possible **modelling, classification or IFC export issue**.
 - Check the IFC classification of structural elements.
 - Ensure structural beams are exported as `IfcBeam`.
 - Re-export and validate the IFC model.
+
+
+
+
+## A2a – Group 22
+
+**Python confidence:** 2/4
+
+**Focus area:** STR – Structures
+
+**Role:** Analyst
