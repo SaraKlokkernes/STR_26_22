@@ -27,10 +27,3 @@ This indicates a possible **modelling, classification or IFC export issue**.
 
 
 
-## A2a – Group 22
-
-**Python confidence:** 2/4
-
-**Focus area:** STR – Structures
-
-**Role:** Analyst
