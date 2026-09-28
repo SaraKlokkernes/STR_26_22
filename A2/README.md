@@ -24,6 +24,52 @@ Structural Report 2601, Section 2.4, p. 4 and Section 8.1, p. 20.
 
 ## A2c – BPMN Diagram
 
+### How would you check this claim?
+
+The claim will be checked by analysing the Building 308 IFC model using
+Python and IfcOpenShell. The tool will extract the `IfcColumn` elements,
+identify new glulam columns and existing load-bearing columns, extract
+their X and Y coordinates, compare their positions and calculate the
+horizontal offset. The result will indicate whether the columns are
+aligned or should be flagged for review.
+
+### When would this claim need to be checked?
+
+The check should be performed during the design phase when the structural
+layout is being developed and coordinated. It can be repeated when the
+structural model is updated.
+
+### What information does this claim rely on?
+
+The check relies on:
+
+- `IfcColumn` elements
+- Column locations/coordinates
+- Information identifying new glulam columns
+- Information identifying existing load-bearing columns
+- Building storey and type/material information where required
+- A defined alignment tolerance
+
+### Phase
+
+**Design**
+
+### BIM purpose
+
+**Analyse**
+
+The IFC model is analysed to validate the spatial relationship between
+new and existing structural elements.
+
+### Closest BIM use case
+
+The closest BIM use case is **Design Coordination**. The proposed tool
+provides an automated check of the spatial relationship between new
+glulam columns and existing load-bearing elements.
+
+### BPMN
+
+
 ![BPMN diagram](IMG/diagram.svg)
 
 [Open BPMN file](IMG/diagram.bpmn)
