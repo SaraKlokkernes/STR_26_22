@@ -115,8 +115,7 @@ The tool can reduce the time spent manually checking column positions and help i
 
 ### Societal value
 
-The tool can support more reliable structural coordination and reduce
-the risk of errors in the digital structural model.
+The tool can support more reliable structural coordination and reduce the risk of errors in the digital structural model. By identifying possible misalignments between new and existing structural elements at an early stage, it can contribute to better-informed engineering decisions and improved collaboration between project participants. Earlier detection of potential issues may also reduce unnecessary redesign, material waste, and construction changes. In this way, the tool can contribute to safer, more efficient, and more resource-conscious building projects.
 
 
 ## A2f – Information Requirements
