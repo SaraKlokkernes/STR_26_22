@@ -97,3 +97,13 @@ load-bearing columns.
 The main technical knowledge needed is how to access the spatial
 coordinates and relevant properties of IfcColumn elements using
 IfcOpenShell.
+
+
+## A2g – Software and Tools
+
+The project will use **GitHub, VS Code and Blender** as the main software tools.
+
+- **GitHub** – for version control and sharing the project.
+- **VS Code** – for developing the Python code.
+- **Blender** – for working with and inspecting the IFC model.
+
