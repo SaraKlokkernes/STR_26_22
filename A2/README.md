@@ -111,8 +111,7 @@ investigation.
 
 ### Business value
 
-The tool can reduce manual checking of column positions and help
-identify potential load-path issues earlier in the design process.
+The tool can reduce the time spent manually checking column positions and help identify potential load-path issues earlier in the design process. By automatically comparing the positions of new and existing columns, possible misalignments can be detected more consistently and efficiently. This supports faster model reviews and allows engineers to focus their attention on areas that require further investigation. Identifying these issues early can also reduce coordination problems and the need for design changes at later project stages.
 
 ### Societal value
 
