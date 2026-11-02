@@ -46,11 +46,11 @@ Our video introduces GitHub, demonstrates its essential features, and explores i
 
 | Section | Topic | Duration |
 |---|---|---|
-| 1 | What is GitHub? | 2 min |
-| 2 | How does GitHub work? | 3 min |
-| 3 | How can we collaborate? | 3 min |
-| 4 | Why is GitHub relevant to OpenBIM? | 3 min |
-| 5 | How can we use GitHub ourselves? | 3 min |
+| 1 | What is GitHub? | 1 min |
+| 2 | How does GitHub work? | 2 min |
+| 3 | How can we collaborate? | 1 min |
+| 4 | Why is GitHub relevant to OpenBIM? | 1 min |
+| 5 | How can we use GitHub ourselves? | 1 min |
 | 6 | Summary | 1 min |
 
 The following sections provide additional explanations and references to accompany the video.
