@@ -14,6 +14,7 @@ capacity verification.
 
 import ifcopenshell
 import ifcopenshell.geom
+from ifcopenshell.util.unit import calculate_unit_scale
 
 
 # --------------------------------------------------
@@ -31,11 +32,15 @@ MIN_OVERLAP_RATIO = 0.50
 def CAPT_ELEM(model):
     """
     Extract columns, beams and walls from an IFC model.
-    Return their GlobalId and global bounding boxes.
+    Return their GlobalId, name, type and global bounding box.
+    All coordinates are converted to metres.
     """
 
     settings = ifcopenshell.geom.settings()
     settings.set(settings.USE_WORLD_COORDS, True)
+
+    # Convert IFC project units to metres
+    unit_scale = calculate_unit_scale(model)
 
     element_types = [
         "IfcColumn",
@@ -45,16 +50,17 @@ def CAPT_ELEM(model):
     ]
 
     elements = []
+    processed_ids = set()
 
     for ifc_type in element_types:
+
         for element in model.by_type(ifc_type):
 
             # Avoid duplicate elements
-            if any(
-                e["GlobalId"] == element.GlobalId
-                for e in elements
-            ):
+            if element.GlobalId in processed_ids:
                 continue
+
+            processed_ids.add(element.GlobalId)
 
             try:
                 shape = ifcopenshell.geom.create_shape(
@@ -66,10 +72,23 @@ def CAPT_ELEM(model):
                 if not vertices:
                     continue
 
-                x = vertices[0::3]
-                y = vertices[1::3]
-                z = vertices[2::3]
+                # Convert coordinates to metres
+                x = [
+                    v * unit_scale
+                    for v in vertices[0::3]
+                ]
 
+                y = [
+                    v * unit_scale
+                    for v in vertices[1::3]
+                ]
+
+                z = [
+                    v * unit_scale
+                    for v in vertices[2::3]
+                ]
+
+                # Calculate global bounding box
                 bbox = {
                     "xmin": min(x),
                     "xmax": max(x),
@@ -87,9 +106,10 @@ def CAPT_ELEM(model):
                 })
 
             except Exception as error:
+
                 print(
-                    f"Could not process {element.GlobalId}: "
-                    f"{error}"
+                    f"Could not process "
+                    f"{element.GlobalId}: {error}"
                 )
 
     return elements
@@ -101,12 +121,11 @@ def CAPT_ELEM(model):
 
 def CONN_ELEM(elements, vertical_tolerance):
     """
-    Find potential supporting elements below columns.
+    Identify potential supporting elements below columns.
 
-    A candidate must:
+    A potential support must:
     - Be a column, beam or wall.
-    - Be below the column being checked.
-    - Have a sufficiently close top elevation.
+    - Have a top elevation close to the column bottom.
     - Have horizontal geometric overlap.
     """
 
@@ -134,12 +153,14 @@ def CONN_ELEM(elements, vertical_tolerance):
 
         for support in supports:
 
+            # An element cannot support itself
             if support["GlobalId"] == column["GlobalId"]:
                 continue
 
             sup_box = support["BBox"]
 
-            # Support must be below the column
+            # Vertical distance between column bottom
+            # and potential support top
             vertical_gap = col_box["zmin"] - sup_box["zmax"]
 
             if not (
@@ -149,7 +170,7 @@ def CONN_ELEM(elements, vertical_tolerance):
             ):
                 continue
 
-            # Calculate horizontal intersection
+            # Calculate horizontal overlap
             overlap_x = max(
                 0,
                 min(col_box["xmax"], sup_box["xmax"])
@@ -176,6 +197,7 @@ def CONN_ELEM(elements, vertical_tolerance):
             )
 
             if overlap_area > 0:
+
                 candidates.append({
                     "Support": support,
                     "VerticalGap": vertical_gap,
@@ -197,8 +219,7 @@ def CONN_ELEM(elements, vertical_tolerance):
 
 def CALC_OVERLAP(candidate):
     """
-    Return the geometric overlap information
-    for a potential support.
+    Calculate and return geometric overlap information.
     """
 
     return {
@@ -214,13 +235,24 @@ def CALC_OVERLAP(candidate):
 
 def CHEK_SUPPORT(candidates, min_overlap_ratio):
     """
-    Classify whether a column has a plausible support.
+    Classify whether a column has a potential support.
+
+    SUPPORTED:
+    At least one candidate satisfies the overlap threshold.
+
+    UNSUPPORTED:
+    No potential support was found.
+
+    REVIEW:
+    Potential support exists but does not satisfy
+    the defined overlap threshold.
     """
 
     if not candidates:
         return "UNSUPPORTED"
 
     for candidate in candidates:
+
         overlap = CALC_OVERLAP(candidate)
 
         if overlap["overlap_ratio"] >= min_overlap_ratio:
@@ -235,7 +267,7 @@ def CHEK_SUPPORT(candidates, min_overlap_ratio):
 
 def COMM_REPORT(relationships, min_overlap_ratio):
     """
-    Generate a structured report.
+    Generate a structured report for each column.
     """
 
     results = []
@@ -251,6 +283,8 @@ def COMM_REPORT(relationships, min_overlap_ratio):
         )
 
         if candidates:
+
+            # Select candidate with greatest overlap
             best = max(
                 candidates,
                 key=lambda c: c["OverlapRatio"]
@@ -271,6 +305,7 @@ def COMM_REPORT(relationships, min_overlap_ratio):
             )
 
         else:
+
             support_id = None
             support_name = None
             support_type = None
@@ -278,14 +313,19 @@ def COMM_REPORT(relationships, min_overlap_ratio):
             vertical_gap = None
 
         results.append({
+
             "Column_ID": column["GlobalId"],
             "Column_Name": column["Name"],
+
             "Support_ID": support_id,
             "Support_Name": support_name,
             "Support_Type": support_type,
+
             "Overlap_Percent": overlap_ratio,
             "Vertical_Gap_m": vertical_gap,
+
             "Status": status
+
         })
 
     return results
@@ -301,34 +341,63 @@ def analyse(
     min_overlap_ratio=MIN_OVERLAP_RATIO
 ):
     """
-    Main function.
-    Can be imported and called by another Python script.
+    Main callable function.
+
+    This function can be imported into another
+    Python script and used with any compatible IFC model.
     """
 
+    if vertical_tolerance < 0:
+        raise ValueError(
+            "Vertical tolerance must be non-negative."
+        )
+
+    if not 0 <= min_overlap_ratio <= 1:
+        raise ValueError(
+            "Overlap ratio must be between 0 and 1."
+        )
+
+    # 1. Capture elements
     elements = CAPT_ELEM(model)
 
+    # 2. Find potential supports
     relationships = CONN_ELEM(
         elements,
         vertical_tolerance
     )
 
+    # 3. Check and communicate results
     results = COMM_REPORT(
         relationships,
         min_overlap_ratio
     )
 
-    return {
+    # 4. Summarise results
+    report = {
+
         "Element_Count": len(elements),
+
         "Column_Count": len(relationships),
+
         "Supported": sum(
-            r["Status"] == "SUPPORTED" for r in results
+            r["Status"] == "SUPPORTED"
+            for r in results
         ),
+
         "Unsupported": sum(
-            r["Status"] == "UNSUPPORTED" for r in results
+            r["Status"] == "UNSUPPORTED"
+            for r in results
         ),
+
         "Review": sum(
-            r["Status"] == "REVIEW" for r in results
+            r["Status"] == "REVIEW"
+            for r in results
         ),
+
         "Results": results
+
     }
+
+    return report
+
 
