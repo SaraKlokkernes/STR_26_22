@@ -28,8 +28,7 @@ By the end, you should be able to:
 3. [How can we collaborate using GitHub?](#3-how-can-we-collaborate-using-github)
 4. [Why is GitHub relevant to OpenBIM?](#4-why-is-github-relevant-to-openbim)
 5. [How can we use GitHub ourselves?](#5-how-can-we-use-github-ourselves)
-6. [Hands-on exercise](#6-hands-on-exercise)
-7. [Quick reference and further reading](#7-quick-reference-and-further-reading)
+6. [Quick reference and further reading](#7-quick-reference-and-further-reading)
 
 ---
 
@@ -332,55 +331,6 @@ Possible applications include maintaining course notes, publishing reproducible 
 
 **Key takeaway:** Start with a small, useful workflow and expand only when the team needs more advanced features.
 
----
-
-## 6. Hands-on exercise
-
-### Our first collaborative OpenBIM repository (10–15 minutes)
-
-**Goal:** Every participant should interact with a real repository and make at least one contribution.
-
-**Preparation by the tutorial team:**
-
-- Create a repository called `openbim-learning-lab` with a README and a `docs/` folder.
-- Add a starter file `docs/resources.md` containing two or three OpenBIM links.
-- Decide whether students will be invited as collaborators or will contribute via forks.
-- Make sure everyone has a GitHub account if they will create Issues or PRs.
-- Test the exercise in advance with a second account.
-
-**Participant checklist:**
-
-- [ ] **Step 1 — Explore:** Open the repository and locate the README, file list and Issues tab.
-- [ ] **Step 2 — Ask:** Create an Issue titled `Suggest an OpenBIM learning resource`. Explain which resource you would add and why.
-- [ ] **Step 3 — Edit:** Create a branch (or fork), then add a link and a one-sentence description to `docs/resources.md`.
-- [ ] **Step 4 — Commit:** Save your edit with a message such as `Add an IFC learning resource`.
-- [ ] **Step 5 — Propose:** Open a pull request, briefly explain your change and request a review.
-- [ ] **Step 6 — Reflect:** Review one proposed change together and merge it if appropriate.
-
-**If time is short:** Complete Steps 1–2 with everyone, and demonstrate Steps 3–6 live with one volunteer.
-
-### Check your understanding
-
-1. **Git or GitHub?** Which one is the version-control system?  
-   **Answer:** Git. GitHub hosts Git repositories and provides collaboration features.
-2. **Why use a pull request?**  
-   **Answer:** To propose changes and allow discussion and review before merging.
-3. **Can anyone edit a public repository?**  
-   **Answer:** No. Anyone can view it, but writing directly requires permission; others may contribute through forks and PRs where permitted.
-4. **Should you use GitHub as your main storage for a large live IFC coordination model?**  
-   **Answer:** Usually no. A dedicated CDE/BIM platform is typically better suited to model coordination and formal project information management.
-5. **What should you check before reusing an open-source BIM script?**  
-   **Answer:** Its license, documentation, dependencies, maintenance status, security implications and suitability for your workflow.
-
-### Reflection questions
-
-- What did you find easiest or most confusing?
-- What is one GitHub feature you could use in your next group project?
-- What would make this tutorial more helpful for beginners?
-
-These responses can support peer feedback and reflection on the teaching process.
-
----
 
 ## 7. Quick reference and further reading
 
