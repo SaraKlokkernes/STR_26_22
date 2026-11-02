@@ -1,359 +1,875 @@
-# GitHub for OpenBIM: From Sharing Files to Collaborative Workflows
 
-> **A3: Teach — Peer-to-peer tutorial**  
-> **Audience:** Architecture, Engineering and Construction (AEC) / OpenBIM students  
-> **Level:** Beginner  
-> **Format:** Guided reading, video
+# GitHub for OpenBIM
+## From Sharing Files to Collaborative Workflows
 
-## Why this tutorial?
+**A3: Teach — Peer-to-Peer Tutorial**
 
-GitHub is widely used to develop software, but its value extends beyond programming. It provides a place to share documentation, track changes, coordinate tasks and contribute to open-source projects. In an OpenBIM context, this can help students discover useful tools, share scripts and examples, and understand how open standards and software evolve.
-
-**Central question:** *How can GitHub help AEC students collaborate, document and share knowledge in an OpenBIM environment?*
-
-
-### Contents
-
-1. [What is GitHub?](#1-what-is-github)
-2. [How does GitHub work?](#2-how-does-github-work)
-3. [How can we collaborate using GitHub?](#3-how-can-we-collaborate-using-github)
-4. [Why is GitHub relevant to OpenBIM?](#4-why-is-github-relevant-to-openbim)
-5. [How can we use GitHub ourselves?](#5-how-can-we-use-github-ourselves)
-6. [Quick reference and further reading](#7-quick-reference-and-further-reading)
+**Audience:** Architecture, Engineering and Construction (AEC) / OpenBIM students  
+**Level:** Beginner  
+**Format:** Video tutorial with written documentation
 
 ---
 
-## 1. What is GitHub?
+## About This Tutorial
 
-### 1.1 What is GitHub, and what is it used for?
+GitHub is widely used in software development, but its applications extend far beyond programming.
 
-[GitHub](https://github.com/) is an online platform for hosting Git repositories and coordinating work around them. A repository can contain code, documentation, scripts, configuration files and other project resources. GitHub adds a web interface and collaboration features such as **Issues**, **Pull Requests**, **Discussions** and access controls.
+It provides a platform for sharing files, documenting projects, tracking changes, and collaborating with others.
 
-**AEC example:** A project team could publish a Python script that checks IFC properties, explain how to use it in a README, and collect bug reports through Issues.
+In the context of OpenBIM, GitHub can support the development of open-source tools, the sharing of technical knowledge, and collaboration across different disciplines.
 
-### 1.2 What is the difference between Git and GitHub?
+### Central Question
 
-| Git | GitHub |
-| --- | --- |
-| A version-control system | A hosting and collaboration platform built around Git |
-| Tracks file changes and their history | Hosts repositories online and adds collaboration tools |
-| Can work locally without an internet connection | Usually accessed online through a browser or connected tools |
-| Does not require a GitHub account | Requires an account for most contribution actions |
+**How can GitHub help AEC students collaborate, document, and share knowledge in an OpenBIM environment?**
 
-**Remember:** Git is the underlying technology; GitHub is one place where Git projects can be hosted and collaboratively managed. GitHub is not the only Git hosting service.
+### Learning Objectives
 
-### 1.3 What is a repository?
+After completing this tutorial, students should be able to:
 
-A **repository** (often called a *repo*) is a project's home. It contains files and, when tracked with Git, a history of changes. A repository might include:
+1. Understand what GitHub is and how it works.
+2. Navigate GitHub repositories and identify their main components.
+3. Understand how GitHub supports collaboration and version control.
+4. Recognize the relevance of GitHub to OpenBIM.
+5. Identify ways to use GitHub in university and professional projects.
+
+---
+
+## Video Tutorial
+
+Our video introduces GitHub, demonstrates its essential features, and explores its applications in OpenBIM.
+
+**Watch our tutorial here:**
+
+[Video Tutorial — Link coming soon](#)
+
+### Video Overview
+
+| Section | Topic | Duration |
+|---|---|---|
+| 1 | What is GitHub? | 2 min |
+| 2 | How does GitHub work? | 3 min |
+| 3 | How can we collaborate? | 3 min |
+| 4 | Why is GitHub relevant to OpenBIM? | 3 min |
+| 5 | How can we use GitHub ourselves? | 3 min |
+| 6 | Summary | 1 min |
+
+The following sections provide additional explanations and references to accompany the video.
+
+---
+
+# 1. What is GitHub?
+
+## 1.1 What is GitHub, and what is it used for?
+
+[GitHub](https://github.com/) is a web-based platform that allows users to store, manage, share, and collaborate on projects.
+
+It is primarily used for software development but can also support:
+
+- Project documentation
+- File sharing
+- Version control
+- Team collaboration
+- Open-source development
+- Knowledge sharing
+- Issue and task management
+
+GitHub makes it possible for individuals and teams to work on shared projects while keeping track of changes.
+
+**Example in AEC:**
+
+An engineering team could use GitHub to share a Python script that checks IFC model properties. Other users could download the script, report problems, and suggest improvements.
+
+## 1.2 What is the difference between Git and GitHub?
+
+Although Git and GitHub are closely connected, they are not the same.
+
+### Git
+
+Git is a version-control system that records changes to files over time.
+
+It allows users to:
+
+- Track modifications
+- Compare different versions
+- Restore previous versions
+- Work on separate branches
+- Combine contributions
+
+### GitHub
+
+GitHub is an online platform that hosts Git repositories and provides additional collaboration features.
+
+These include:
+
+- Sharing repositories
+- Reviewing changes
+- Managing Issues
+- Creating Pull Requests
+- Organizing project documentation
+
+**In simple terms:**
+
+Git is the technology that tracks changes.
+
+GitHub is the platform where Git-based projects can be shared and collaboratively managed.
+
+## 1.3 What is a repository?
+
+A repository, often called a "repo", is the central location where a project's files and version history are stored.
+
+A repository may contain:
+
+- Source code
+- Documentation
+- Images
+- Configuration files
+- Scripts
+- Example datasets
+- README files
+
+Example structure:
 
 ```text
-openbim-student-project/
-├── README.md             # Project overview and instructions
-├── docs/                 # Guides and explanations
-├── scripts/              # Small automation scripts
-├── examples/             # Sample data (where suitable)
-├── .gitignore            # Files Git should not track
-└── LICENSE               # Terms for reusing the project
+OpenBIM-Project/
+|
+|-- README.md
+|-- documentation/
+|-- scripts/
+|-- examples/
+|-- LICENSE
 ```
 
-A repository can be **public** (visible to everyone) or **private** (limited to authorized people).
+Repositories can be public or private.
 
-### 1.4 What does open source mean?
+**Public repositories** are visible to everyone.
 
-**Open source** generally means that software's source code is available under a license granting rights to use, study, modify and redistribute it under specified conditions. **Publicly visible does not automatically mean open source**: without a suitable license, reuse rights may be limited.
+**Private repositories** are accessible only to authorized users.
 
-Common licenses include MIT, Apache-2.0 and GPL licenses. Always check the repository's `LICENSE` file before copying or adapting work. For datasets and documentation, different licenses may apply.
+## 1.4 What does Open Source mean?
 
-### 1.5 Why is GitHub relevant beyond software development?
+Open source generally refers to software whose source code is made available under a license that allows others to use, study, modify, and redistribute it under specified conditions.
 
-GitHub can support many text-based, versioned collaborative activities: technical documentation, research notes, reproducible workflows, templates, issue tracking and learning resources. It is particularly effective when teams need to see **who changed what, when, and why**.
+Important principles include:
 
-### 1.6 Why should architects, engineers and BIM managers know about GitHub?
+- Transparency
+- Collaboration
+- Knowledge sharing
+- Community-driven improvement
+- Reusability
 
-AEC teams increasingly encounter open-source BIM tools, scripts, plugins and technical standards. Knowing how to read a README, inspect an Issue and locate a release makes it easier to evaluate and reuse these resources responsibly—even without being a programmer.
+However, a public GitHub repository is not automatically open source.
 
-**Key takeaway:** GitHub is not just a code website; it is a structured environment for sharing and improving project knowledge.
+A suitable license is required to grant reuse and modification rights.
+
+Common open-source licenses include MIT, Apache-2.0, and GPL.
+
+## 1.5 Why is GitHub relevant beyond software development?
+
+GitHub is useful whenever projects require documentation, collaboration, and transparent change tracking.
+
+Examples include:
+
+- Research projects
+- University assignments
+- Technical documentation
+- Data analysis
+- Automation workflows
+- Educational resources
+- Open standards development
+
+Its main advantage is that project information and changes can be organized in one accessible location.
+
+## 1.6 Why should architects, engineers, and BIM managers know about GitHub?
+
+Digital construction increasingly relies on software, automation, open standards, and data exchange.
+
+GitHub provides access to many tools and resources relevant to these activities.
+
+AEC professionals can use GitHub to:
+
+- Discover open-source BIM tools
+- Access automation scripts
+- Understand software development
+- Follow updates to technical projects
+- Report bugs and suggest improvements
+- Share technical documentation
+
+Programming knowledge is not necessary to browse repositories or access documentation.
+
+### Key Takeaway
+
+**GitHub is more than a platform for programmers. It is an environment for sharing, documenting, and improving technical knowledge.**
 
 ---
 
-## 2. How does GitHub work?
+# 2. How Does GitHub Work?
 
-### 2.1 How do you create a GitHub account?
+## 2.1 How do you create a GitHub account?
 
-1. Visit [github.com](https://github.com/) and select **Sign up**.
-2. Follow the registration steps and verify your email if requested.
-3. Choose a recognizable username and configure your profile.
-4. Enable **two-factor authentication** to protect your account.
+To create a GitHub account:
 
-You can browse most public repositories without an account, but you generally need to sign in to create repositories, Issues or pull requests.
+1. Visit https://github.com
+2. Select "Sign up".
+3. Enter the required registration information.
+4. Choose a username.
+5. Complete the verification process.
+6. Configure your profile and security settings.
 
-### 2.2 How do you search for and explore existing projects?
+Two-factor authentication is recommended to protect your account.
 
-Use GitHub's search bar to search by keywords such as `IFC`, `OpenBIM`, `IfcOpenShell` or `buildingSMART`. Open a repository and look at:
+Most public repositories can be viewed without an account.
 
-- **README:** What is the project, and how do you use it?
-- **Files and folders:** What does it contain?
-- **Issues:** Which bugs, requests or discussions are open?
-- **Pull requests:** What changes are being proposed?
-- **Releases:** Are there published versions to download?
-- **LICENSE:** What are you allowed to reuse?
-- **Recent activity:** Is the project still maintained? (Activity alone does not guarantee quality.)
+However, an account is generally required to create repositories or contribute to projects.
 
-**Tip:** To download a snapshot of a repository, use **Code → Download ZIP**. This gives you the files but not a working Git history. For an ongoing contribution workflow, use a clone or GitHub's browser editing tools.
+## 2.2 How do you search for and explore existing projects?
 
-### 2.3 How do you create a repository?
+GitHub provides a search function for discovering repositories, code, and other resources.
 
-1. Sign in and click **+ → New repository** (or visit [github.com/new](https://github.com/new)).
-2. Enter a name, for example `openbim-learning-lab`.
-3. Add an optional description.
-4. Choose **Public** or **Private**.
-5. Select **Add a README file**.
-6. Click **Create repository**.
+For example, searching for:
 
-**Tip:** Start with a README so others immediately understand the repository's purpose.
+- OpenBIM
+- IFC
+- IfcOpenShell
+- buildingSMART
+- BIM automation
 
-### 2.4 How do you upload and organize files?
+can lead to relevant projects.
 
-In your repository, choose **Add file → Upload files**, select the files, enter a short commit message and confirm the change. Organize content into clear folders such as `docs/`, `scripts/` and `examples/`.
+When opening a repository, several elements are important:
 
-Avoid uploading passwords, access tokens, confidential project data or personal information. GitHub is also not an ideal default location for very large, frequently changing BIM model files.
+**README**
 
-### 2.5 What are commits, and how does version control work?
+Explains the purpose of the project and how to use it.
 
-A **commit** records a set of changes in a repository's history, usually with a message explaining the change. For example:
+**Code**
+
+Contains the repository's files and folders.
+
+**Issues**
+
+Shows reported problems, questions, and improvement suggestions.
+
+**Pull Requests**
+
+Shows proposed changes and discussions about them.
+
+**Releases**
+
+Provides published versions of a project, when available.
+
+**License**
+
+Explains the legal conditions for using and modifying the project.
+
+**Example:**
+
+The IfcOpenShell repository contains resources related to working with IFC files.
+
+https://github.com/IfcOpenShell/IfcOpenShell
+
+## 2.3 How do you create a repository?
+
+A repository can be created directly through the GitHub website.
+
+The general process is:
+
+1. Log in to GitHub.
+2. Select "New repository".
+3. Enter a repository name.
+4. Add a description.
+5. Choose public or private visibility.
+6. Optionally initialize it with a README.
+7. Select "Create repository".
+
+The repository becomes the central location for the project's files and documentation.
+
+## 2.4 How do you upload and organize files?
+
+Files can be uploaded directly through GitHub's web interface.
+
+In a repository, select:
+
+**Add file → Upload files**
+
+After selecting the files, GitHub allows users to enter a commit message describing the change.
+
+Files can be organized into folders to make the project easier to understand.
+
+For example:
 
 ```text
-Add IFC property-checking instructions
+BIM-Documentation/
+|
+|-- README.md
+|-- tutorials/
+|-- images/
+|-- scripts/
+|-- references/
 ```
 
-Version control helps teams review earlier changes, compare versions and understand why a document or script evolved. A commit is **not** the same as uploading a complete new copy of a project with a filename like `final_v7_really_final`.
+A clear folder structure improves accessibility and makes collaboration easier.
 
-**Example:** Instead of maintaining `guide_v1.md`, `guide_v2.md` and `guide_final.md`, keep `guide.md` and use commit history to track revisions.
+Sensitive information, passwords, and confidential project files should not be uploaded without appropriate authorization.
 
-### 2.6 What is a README file, and why is it important?
+## 2.5 What are commits, and how does version control work?
 
-A `README.md` is the introductory document shown prominently on a repository's main page. The `.md` extension means **Markdown**, a simple formatting language for headings, links, lists, tables and code blocks.
+A commit records a set of changes made to a repository.
 
-A useful README answers:
+Each commit usually includes:
 
-- What is this project?
-- Who is it for?
-- How do I get started?
-- How do I use or contribute to it?
-- Where can I find examples, documentation and license information?
+- The changes made
+- The author
+- The date
+- A descriptive message
 
-**Key takeaway:** A clear README makes shared work understandable and reusable.
+For example:
 
----
+"Updated IFC documentation"
 
-## 3. How can we collaborate using GitHub?
+Version control allows users to compare changes and access previous versions.
 
-### 3.1 How can multiple people contribute to the same project?
-
-A repository owner can invite collaborators or manage access through an organization. Team members can propose and review changes. For public open-source projects, outside contributors often **fork** a repository (make their own copy), work on a change, and open a pull request to the original project.
-
-A simple collaboration cycle is:
+Instead of creating multiple files such as:
 
 ```text
-Idea → Issue → Branch → Edit → Commit → Pull Request → Review → Merge
+project_final_v1
+project_final_v2
+project_final_v3
 ```
 
-Not every project uses every step, but this is a useful beginner workflow.
+Git can track changes within the same file.
 
-### 3.2 What is the difference between public and private repositories?
+This improves transparency and reduces confusion.
 
-| Public repository | Private repository |
-| --- | --- |
-| Anyone can view its content | Only authorized users can access its content |
-| Useful for open learning resources and open-source projects | Useful for team work that should not be public |
-| Visibility does not give everyone permission to edit | Collaborators need appropriate access permissions |
+## 2.6 What is a README file, and why is it important?
 
-**Important:** Even private repositories require careful handling of confidential data and credentials. Follow your university's or project's data-sharing policies.
+A README is usually the first document visitors see when opening a GitHub repository.
 
-### 3.3 What are branches and pull requests?
+It is commonly named:
 
-A **branch** is a separate line of development. It lets you work on a change without immediately modifying the main branch. A **pull request (PR)** asks others to review and potentially merge those changes.
+`README.md`
 
-**Example:** A student creates a branch named `improve-ifc-guide`, edits a tutorial and opens a PR. Teammates review the change and, if approved, merge it into `main`.
+The `.md` extension stands for Markdown, a lightweight language used to format text.
 
-A pull request is not the same as downloading a file: it is a proposal to integrate changes into a repository.
+A README can include:
 
-### 3.4 How can GitHub Issues be used to track tasks and problems?
+- Project descriptions
+- Instructions
+- Images
+- Links
+- Tables
+- Examples
+- Technical documentation
 
-An **Issue** is a place to describe a task, question, bug or improvement. A good Issue typically includes:
+A well-written README helps users understand what a project does and how they can use it.
 
-- A descriptive title
-- Context or the problem
-- Steps to reproduce (for bugs)
-- The expected outcome
-- Relevant screenshots or links, when appropriate
+**This document is itself an example of a GitHub README.**
 
-**AEC example:** `IFC example file is missing the required property set` could be an Issue in a shared validation-script repository.
+### Key Takeaway
 
-### 3.5 How can we review and track changes made by others?
-
-Open the **Commits** history to see recorded changes. In a pull request, use **Files changed** to inspect additions and deletions, then leave comments or request revisions. The **Blame** view can help identify the commit that last changed a particular line of a text file.
-
-### 3.6 How can GitHub improve transparency and accountability?
-
-Commit histories, issue discussions and PR reviews provide a traceable record of decisions and contributions. This can make handovers and teamwork clearer. However, a commit history does **not** measure a person's overall effort or guarantee that changes are correct.
-
-**Key takeaway:** Collaboration is more than sharing files; it includes communicating decisions and reviewing changes.
+**Repositories organize projects, commits track changes, and README files make information understandable and accessible.**
 
 ---
 
-## 4. Why is GitHub relevant to OpenBIM?
+# 3. How Can We Collaborate Using GitHub?
 
-### 4.1 What role does GitHub play in the OpenBIM ecosystem?
+## 3.1 How can multiple people contribute to the same project?
 
-OpenBIM promotes interoperability and open standards across AEC software and workflows. GitHub supports this ecosystem by hosting tools, code, documentation, examples and discussions. It is **not itself an OpenBIM standard or a dedicated BIM model server**.
+GitHub allows several people to collaborate on shared repositories.
 
-### 4.2 Which OpenBIM tools and projects are available on GitHub?
+Depending on their permissions, contributors can:
 
-Here are three useful starting points:
+- Add or edit files
+- Suggest improvements
+- Report problems
+- Review changes
+- Discuss new features
 
-| Project / organization | GitHub link | What to explore |
-| --- | --- | --- |
-| **IfcOpenShell** | [IfcOpenShell/IfcOpenShell](https://github.com/IfcOpenShell/IfcOpenShell) | Open-source tools and libraries for IFC workflows; README, issues and source code |
-| **buildingSMART International** | [buildingSMART](https://github.com/buildingSMART) | Repositories related to open BIM standards, specifications and supporting resources |
-| **Speckle** | [specklesystems](https://github.com/specklesystems) | Open-source components of an AEC data collaboration ecosystem |
+Project owners can invite collaborators and manage their access rights.
 
-**Suggested live demo:** Open one of these repositories, locate its README, inspect an Issue, and identify the license and any release information.
+For public open-source projects, external contributors can often propose changes through forks and pull requests.
 
-### 4.3 How can GitHub be used to share BIM scripts, documentation and workflows?
+A typical collaboration process is:
 
-A team can publish a script for checking IFC properties alongside instructions, sample input/output and known limitations. Other users can propose fixes or request features. For example:
+**Issue → Branch → Change → Commit → Pull Request → Review → Merge**
+
+This provides a structured approach to teamwork.
+
+## 3.2 What is the difference between public and private repositories?
+
+### Public Repository
+
+A public repository can be viewed by anyone.
+
+It is useful for:
+
+- Open-source projects
+- Public documentation
+- Educational resources
+- Community collaboration
+
+Public visibility does not mean everyone can directly edit the project.
+
+### Private Repository
+
+A private repository is accessible only to authorized users.
+
+It is useful for:
+
+- Internal projects
+- University group work
+- Confidential documentation
+- Team development
+
+Access permissions can be managed by repository owners.
+
+## 3.3 What are branches and pull requests?
+
+### Branches
+
+A branch is a separate line of development within a repository.
+
+It allows contributors to work on changes without immediately affecting the main version.
+
+For example:
+
+A team member could create a branch to improve the documentation of an IFC workflow.
+
+### Pull Requests
+
+A pull request proposes that changes from one branch should be integrated into another.
+
+Other contributors can:
+
+- Review the changes
+- Leave comments
+- Suggest improvements
+- Approve or request revisions
+
+Once accepted, the changes can be merged.
+
+This process supports quality control and collaboration.
+
+## 3.4 How can GitHub Issues be used to track tasks and problems?
+
+GitHub Issues are used to document and discuss tasks, problems, questions, and improvement suggestions.
+
+An Issue may contain:
+
+- A title
+- A description
+- Screenshots
+- Labels
+- Assigned contributors
+- Discussion comments
+
+**Example in OpenBIM:**
+
+A user discovers that a script does not correctly recognize an IFC property set.
+
+They create an Issue explaining the problem.
+
+Other contributors can investigate and discuss possible solutions.
+
+Issues therefore support communication and continuous improvement.
+
+## 3.5 How can we review and track changes made by others?
+
+GitHub provides several features for reviewing project history.
+
+**Commit History**
+
+Shows recorded changes over time.
+
+**Pull Request Reviews**
+
+Allow users to inspect proposed changes and provide feedback.
+
+**Files Changed**
+
+Highlights additions and deletions in text-based files.
+
+**Blame View**
+
+Shows which commit last changed a particular line of a file.
+
+These tools make project development more transparent.
+
+## 3.6 How can GitHub improve transparency and accountability?
+
+GitHub documents many aspects of collaboration.
+
+For example:
+
+- Who submitted a change?
+- When was it submitted?
+- What was modified?
+- Why was the change proposed?
+- Was the change reviewed?
+
+This information can support communication, documentation, and project handovers.
+
+However, GitHub activity does not necessarily reflect the total amount or quality of work contributed by a person.
+
+### Key Takeaway
+
+**GitHub supports collaboration not only by sharing files but also by documenting decisions, changes, and discussions.**
+
+---
+
+# 4. Why Is GitHub Relevant to OpenBIM?
+
+## 4.1 What role does GitHub play in the OpenBIM ecosystem?
+
+OpenBIM promotes interoperability, open standards, and collaboration across different software applications and disciplines.
+
+GitHub supports these principles by providing an environment where technical resources can be shared and developed collaboratively.
+
+GitHub can host:
+
+- Open-source BIM software
+- IFC-related libraries
+- Automation scripts
+- Technical documentation
+- Example workflows
+- Supporting resources for open standards
+
+However, GitHub is not itself an OpenBIM standard or a dedicated BIM model management platform.
+
+## 4.2 Which OpenBIM tools and projects are available on GitHub?
+
+Several relevant organizations and projects use GitHub.
+
+### Example 1: IfcOpenShell
+
+https://github.com/IfcOpenShell/IfcOpenShell
+
+IfcOpenShell is an open-source project providing tools and libraries for working with IFC data.
+
+It supports workflows involving:
+
+- IFC file processing
+- Data extraction
+- Model analysis
+- BIM automation
+- Open-source BIM software development
+
+Its GitHub repository demonstrates how developers collaborate on technical BIM tools.
+
+### Example 2: buildingSMART International
+
+https://github.com/buildingSMART
+
+buildingSMART International develops and maintains open standards for the built asset industry.
+
+Its GitHub organization contains repositories related to standards, specifications, and supporting technical resources.
+
+This demonstrates how GitHub can contribute to transparent technical development.
+
+Formal standardization decisions still follow the organization's established governance processes.
+
+### Example 3: Speckle
+
+https://github.com/specklesystems
+
+Speckle provides technologies for sharing and working with AEC data.
+
+Its GitHub organization contains open-source components related to its ecosystem.
+
+This example highlights the distinction between GitHub as a software development platform and specialized tools for working with AEC data.
+
+## 4.3 How can GitHub be used to share BIM scripts, documentation, and workflows?
+
+GitHub can provide a central location for sharing reusable BIM-related resources.
+
+For example, a team could publish:
+
+- Python scripts for IFC analysis
+- Instructions for model checking
+- Workflow diagrams
+- Technical documentation
+- Example datasets
+- Automation templates
+
+A repository could be organized as follows:
 
 ```text
-ifc-quality-check/
-├── README.md
-├── scripts/
-│   └── check_properties.py
-├── docs/
-│   └── workflow.md
-└── examples/
-    └── sample-report.csv
+IFC-Quality-Checking/
+|
+|-- README.md
+|-- scripts/
+|   |-- check_properties.py
+|
+|-- documentation/
+|   |-- workflow.md
+|
+|-- examples/
+|   |-- example_report.csv
 ```
 
-Include the software versions and dependencies required to reproduce results. Share model data only when you have permission to do so.
+Other users could access the documentation, understand the workflow, and suggest improvements.
 
-### 4.4 How does GitHub support the development of open standards?
+## 4.4 How does GitHub support the development of open standards?
 
-Organizations can publish technical specifications and supporting resources, discuss proposed changes, and track revisions publicly. Some buildingSMART work is accessible through GitHub. However, **formal standardization and approval happen through the relevant standards organization's governance processes**, not simply because a pull request was merged.
+Open standards benefit from transparent documentation and collaborative technical development.
 
-### 4.5 What are the benefits and limitations of using GitHub for BIM projects?
+GitHub can help organizations:
 
-**Benefits**
+- Publish technical resources
+- Track proposed modifications
+- Discuss improvements
+- Document development history
+- Collect community feedback
 
-- Transparent history for text-based documentation and scripts
-- Easier collaboration and peer review
-- Access to open-source tools and learning resources
-- Public issue tracking and knowledge sharing
-- Reusable project templates and examples
+For example, technical resources associated with buildingSMART standards can be explored through GitHub.
 
-**Limitations**
+However, publishing or merging changes on GitHub does not automatically mean a standard has been formally approved.
 
-- Large binary IFC or native authoring files are less suitable for ordinary Git diff/merge workflows.
-- GitHub does not provide all the model coordination, permissions, approval workflows and visualization functions of a specialized Common Data Environment (CDE).
-- Public repositories can expose sensitive project information if files are shared carelessly.
-- A public repository may be outdated, unlicensed or unmaintained; always evaluate before use.
+## 4.5 What are the benefits and limitations of GitHub for BIM projects?
 
-**Practical distinction:** Use GitHub primarily for **scripts, configuration, documentation, issues and manageable examples**. Use an appropriate CDE or BIM collaboration platform for **live project models and formal information management**. Git LFS can help store certain large files, but it does not make binary BIM model merging straightforward.
+### Benefits
 
-**Key takeaway:** GitHub complements OpenBIM workflows; it does not replace BIM-specific collaboration infrastructure.
+**Transparency**
+
+Changes and discussions can be documented.
+
+**Collaboration**
+
+Multiple contributors can participate in development.
+
+**Accessibility**
+
+Public repositories allow knowledge and tools to be shared widely.
+
+**Version Control**
+
+Previous versions of text-based files and scripts can be tracked.
+
+**Knowledge Sharing**
+
+Documentation and examples can be made available to the community.
+
+### Limitations
+
+**Large BIM Files**
+
+Large IFC and native BIM model files are often unsuitable for ordinary Git version-control workflows.
+
+**Model Coordination**
+
+GitHub does not replace specialized BIM collaboration platforms or Common Data Environments (CDEs).
+
+**Technical Complexity**
+
+Some advanced Git workflows require additional knowledge.
+
+**Data Security**
+
+Public repositories may expose sensitive project information.
+
+**Quality Assurance**
+
+Not every public repository is actively maintained or suitable for professional use.
+
+### GitHub vs. Common Data Environment (CDE)
+
+| GitHub | CDE |
+|---|---|
+| Code and script management | Project information management |
+| Documentation | BIM model coordination |
+| Version control for text-based files | Managed model and document workflows |
+| Open-source collaboration | Project delivery and approvals |
+| Issue tracking | Formal information exchange |
+
+GitHub and CDE platforms can complement one another, but they serve different purposes.
+
+### Key Takeaway
+
+**GitHub supports the development and sharing of OpenBIM knowledge and tools, while specialized BIM platforms remain important for model-based collaboration.**
 
 ---
 
-## 5. How can we use GitHub ourselves?
+# 5. How Can We Use GitHub Ourselves?
 
-### 5.1 How can we create a shared project?
+## 5.1 How can we create a shared project?
 
-One team member creates a repository, adds a README and invites teammates through **Settings → Collaborators and teams** (wording may vary with repository ownership). Agree on a folder structure, naming conventions and a simple workflow before adding content.
+A shared GitHub repository can provide a central location for group documentation, scripts, and other resources.
 
-**Suggested project:** `openbim-learning-lab`, a shared collection of links, terminology and beginner resources.
+A typical process includes:
 
-### 5.2 How do we upload and edit files?
+1. Creating a repository.
+2. Defining its purpose.
+3. Adding a README.
+4. Organizing folders.
+5. Inviting collaborators.
+6. Managing access permissions.
 
-**Upload:** Open the repository → **Add file → Upload files** → choose files → enter a commit message → confirm.
+For example, a university group could create an `OpenBIM-Learning-Resources` repository.
 
-**Edit in browser:** Open a text file such as `README.md` → select the pencil/edit control → make changes → select **Commit changes**. If you do not have direct write access, GitHub may offer a fork-and-pull-request workflow instead.
+It could contain useful links, explanations, tutorials, and examples.
 
-For your first exercise, editing Markdown is simpler and more reliable than editing an IFC file.
+## 5.2 How do we upload and edit files?
 
-### 5.3 How can we document our work using a README?
+GitHub provides a browser-based interface for basic file management.
 
-Use a short structure like this:
+### Uploading Files
 
-```markdown
-# OpenBIM Learning Lab
+Open a repository and select:
 
-## Purpose
-A shared resource collection for our OpenBIM class.
+**Add file → Upload files**
 
-## Resources
+Select the files and confirm the change with a commit message.
+
+### Editing Files
+
+Open a text file, select the edit option, modify its contents, and commit the changes.
+
+For users without direct write access, GitHub may offer a fork-and-pull-request workflow.
+
+This means that basic editing and documentation can be performed without installing additional software.
+
+## 5.3 How can we document our work using a README?
+
+A README should explain the project's purpose and provide the information required to understand and use it.
+
+A simple README structure might include:
+
+```text
+Project Title
+
+1. Introduction
+2. Project Purpose
+3. Features
+4. Documentation
+5. Resources
+6. Contributors
+7. License
+```
+
+Markdown makes it possible to format these sections using headings, links, images, and tables.
+
+A clear README improves communication and makes projects easier to reuse.
+
+## 5.4 How do we contribute to another person's repository?
+
+Contributing to an existing repository usually involves the following process:
+
+1. Explore the repository.
+2. Read its README and contribution guidelines.
+3. Identify a possible improvement.
+4. Check existing Issues and pull requests.
+5. Create a fork or branch if appropriate.
+6. Make the proposed change.
+7. Open a pull request.
+8. Wait for review and respond to feedback.
+
+Repository maintainers decide whether a contribution is accepted.
+
+Not every project accepts external contributions.
+
+## 5.5 How can we use GitHub in future university or professional projects?
+
+GitHub can support different types of AEC and OpenBIM projects.
+
+### University Projects
+
+- Organizing group documentation
+- Sharing learning resources
+- Managing scripts
+- Tracking project tasks
+- Documenting technical workflows
+
+### Professional Applications
+
+- Developing BIM automation tools
+- Managing technical documentation
+- Sharing reusable scripts
+- Collaborating on open-source projects
+- Tracking software issues
+- Maintaining reproducible workflows
+
+**Example:**
+
+A BIM team develops a Python script that checks the completeness of IFC properties.
+
+GitHub can be used to store the script, document how it works, track improvements, and coordinate contributions.
+
+The actual project models may remain in a dedicated CDE.
+
+### Key Takeaway
+
+**GitHub can help students and professionals organize knowledge, collaborate on technical resources, and improve workflows over time.**
+
+---
+
+# 6. Summary
+
+GitHub is a platform for hosting repositories and supporting collaboration.
+
+The most important concepts covered in this tutorial are:
+
+| Concept | Meaning |
+|---|---|
+| Git | Version-control system |
+| GitHub | Platform for hosting and collaborating on Git projects |
+| Repository | Central location for project files and history |
+| README | Main project documentation |
+| Commit | Recorded change |
+| Branch | Separate line of development |
+| Pull Request | Proposal to integrate changes |
+| Issue | Task, problem, or improvement suggestion |
+| Fork | Personal copy of another repository |
+| Open Source | Software distributed under a license granting reuse and modification rights |
+
+## Why Does This Matter for OpenBIM?
+
+OpenBIM is based on principles of interoperability, collaboration, and open standards.
+
+GitHub supports these principles by enabling:
+
+- Open-source development
+- Transparent documentation
+- Collaborative improvement
+- Knowledge exchange
+- Access to reusable tools and resources
+
+GitHub is particularly valuable for scripts, technical documentation, and software development.
+
+It complements rather than replaces dedicated BIM collaboration platforms.
+
+---
+
+# 7. Further Reading and Resources
+
+### GitHub Documentation
+
+- [GitHub Official Website](https://github.com/)
+- [GitHub Getting Started](https://docs.github.com/en/get-started)
+- [About Repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories)
+- [About Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+- [Markdown Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+### OpenBIM Resources
+
 - [IfcOpenShell](https://github.com/IfcOpenShell/IfcOpenShell)
-- [buildingSMART](https://github.com/buildingSMART)
-
-## How to contribute
-Open an Issue to suggest a resource, or propose an edit through a pull request.
-
-## Team
-Add contributors here with their permission.
-```
-
-Keep the document current, use descriptive links and explain what readers should do next.
-
-### 5.4 How do we contribute to another person's repository?
-
-1. Read the project's README and any `CONTRIBUTING.md` instructions.
-2. Check existing Issues and pull requests to avoid duplicate work.
-3. For a small improvement, use the browser editor; GitHub may prompt you to fork the repository.
-4. Create a branch, make your change and commit it with a clear message.
-5. Open a pull request describing **what changed** and **why**.
-6. Respond to review comments; a maintainer decides whether to merge.
-
-**Remember:** Not every repository accepts outside contributions, and an open PR is not guaranteed to be merged.
-
-### 5.5 How can we use GitHub in future university or professional projects?
-
-Possible applications include maintaining course notes, publishing reproducible analysis scripts, documenting an IFC-checking workflow, collecting open-source BIM resources, tracking tasks and coordinating development of small automation tools.
-
-**Example:** For a group assignment, create a private repository for scripts and documentation, use Issues to assign tasks, and use PRs to review important changes. Keep confidential or large model data in an approved system rather than assuming GitHub is the right place.
-
-**Key takeaway:** Start with a small, useful workflow and expand only when the team needs more advanced features.
-
-
-## 6. Quick reference and further reading
-
-| Term | Meaning |
-| --- | --- |
-| **Git** | Version-control system for tracking changes |
-| **GitHub** | Platform for hosting Git repositories and collaborating |
-| **Repository** | Project files and their tracked history |
-| **README** | Main introductory project document, often written in Markdown |
-| **Commit** | Recorded set of changes with a message |
-| **Branch** | Separate line of work within a repository |
-| **Pull Request** | Proposal to review and integrate changes |
-| **Issue** | Task, bug report, question or improvement request |
-| **Fork** | Your own copy of another repository, useful for contributions |
-| **Clone** | Local copy of a Git repository with its history |
-| **License** | Terms specifying how others may use and redistribute material |
-| **CDE** | Common Data Environment used for managed project information workflows |
-
-### Useful links
-
-- [GitHub Docs — Getting started](https://docs.github.com/en/get-started)
-- [GitHub Docs — About repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories)
-- [GitHub Docs — About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
-- [GitHub Docs — Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- [GitHub Skills — Interactive courses](https://skills.github.com/)
-- [IfcOpenShell on GitHub](https://github.com/IfcOpenShell/IfcOpenShell)
-- [buildingSMART on GitHub](https://github.com/buildingSMART)
-- [Speckle on GitHub](https://github.com/specklesystems)
+- [buildingSMART International](https://github.com/buildingSMART)
+- [Speckle](https://github.com/specklesystems)
 
 ---
 
-**Final message:** GitHub helps us move from *sharing a finished file* to *collaboratively developing, documenting and improving a project*. In OpenBIM, this is particularly valuable for open-source tools, scripts, technical knowledge and transparent workflows—while dedicated BIM platforms remain important for model-based project delivery.
+## Final Thoughts
 
-*Created as a peer-learning resource for A3: Teach. Adapt the exercise, timing and repository permissions to your class.*
+GitHub allows us to move beyond simply sharing finished files.
+
+It provides an environment where knowledge, documentation, and technical resources can be continuously developed and improved.
+
+For AEC students, understanding GitHub is an opportunity to explore open-source technologies and collaborative digital workflows.
+
+**The goal is not to become a software developer, but to understand how GitHub can support collaboration, transparency, and knowledge sharing in OpenBIM.**
+
+---
+
+*Created for A3: Teach — Advanced OpenBIM.*
+
+*Video tutorial and documentation prepared as a peer-learning resource.*
+
 
