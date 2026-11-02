@@ -3,8 +3,7 @@
 > **A3: Teach — Peer-to-peer tutorial**  
 > **Audience:** Architecture, Engineering and Construction (AEC) / OpenBIM students  
 > **Level:** Beginner  
-> **Format:** Guided reading, live demonstration and hands-on exercise  
-> **Suggested duration:** 30–45 minutes (the full document also works as self-study material)
+> **Format:** Guided reading, video
 
 ## Why this tutorial?
 
