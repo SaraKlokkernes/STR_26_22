@@ -11,15 +11,6 @@ GitHub is widely used to develop software, but its value extends beyond programm
 
 **Central question:** *How can GitHub help AEC students collaborate, document and share knowledge in an OpenBIM environment?*
 
-### Learning outcomes
-
-By the end, you should be able to:
-
-1. Explain what GitHub is and distinguish it from Git.
-2. Navigate a repository, read its documentation and make a simple change.
-3. Describe how teams collaborate with issues, branches, commits and pull requests.
-4. Identify useful OpenBIM projects on GitHub and understand the platform's limitations.
-5. Apply a basic GitHub workflow to a student project.
 
 ### Contents
 
@@ -332,7 +323,7 @@ Possible applications include maintaining course notes, publishing reproducible 
 **Key takeaway:** Start with a small, useful workflow and expand only when the team needs more advanced features.
 
 
-## 7. Quick reference and further reading
+## 6. Quick reference and further reading
 
 | Term | Meaning |
 | --- | --- |
