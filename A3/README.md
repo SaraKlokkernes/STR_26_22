@@ -1,4 +1,3 @@
-
 # GitHub for OpenBIM
 ## From Sharing Files to Collaborative Workflows
 
@@ -24,7 +23,7 @@ In the context of OpenBIM, GitHub can support the development of open-source too
 
 ### Learning Objectives
 
-After completing this tutorial, students should be able to:
+After watching the video and working through the accompanying documentation, students should be able to:
 
 1. Understand what GitHub is and how it works.
 2. Navigate GitHub repositories and identify their main components.
@@ -36,25 +35,25 @@ After completing this tutorial, students should be able to:
 
 ## Video Tutorial
 
-Our video introduces GitHub, demonstrates its essential features, and explores its applications in OpenBIM.
+Our approximately three-minute video introduces GitHub, explains its essential features, and explores its applications in OpenBIM.
 
 **Watch our tutorial here:**
 
-[Video Tutorial](https://youtu.be/Cb7ndjIgTb0?si=dygnZTJEEQbBKejn)
-
+[Video Tutorial](https://www.youtube.com/watch?v=Cb7ndjIgTb0)
 
 ### Video Overview
 
-| Section | Topic | Duration |
+| Section | Topic | Timestamp |
 |---|---|---|
-| 1 | What is GitHub? | 1 min |
-| 2 | How does GitHub work? | 2 min |
-| 3 | How can we collaborate? | 1 min |
-| 4 | Why is GitHub relevant to OpenBIM? | 1 min |
-| 5 | How can we use GitHub ourselves? | 1 min |
-| 6 | Summary | 1 min |
+| Introduction | Welcome and tutorial overview | [0:00](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=0s) |
+| 1 | What is GitHub? | [0:13](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=13s) |
+| 2 | How does GitHub work? | [0:42](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=42s) |
+| 3 | How can we collaborate? | [1:12](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=72s) |
+| 4 | Why is GitHub relevant to OpenBIM? | [1:42](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=102s) |
+| 5 | How can we use GitHub ourselves? | [2:22](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=142s) |
+| 6 | Summary | [2:43](https://www.youtube.com/watch?v=Cb7ndjIgTb0&t=163s) |
 
-The following sections provide additional explanations and references to accompany the video.
+The written documentation follows the six main topics of the video and expands on them with additional explanations, practical instructions, examples, and references. Account setup, repository creation, file uploads, licensing, and contribution workflows are supplementary learning material rather than topics explained in detail in the video.
 
 ---
 
@@ -116,7 +115,7 @@ GitHub is the platform where Git-based projects can be shared and collaborativel
 
 ## 1.3 What is a repository?
 
-A repository, often called a "repo", is the central location where a project's files and version history are stored.
+A repository, often called a "repo", is the central location where a project's files, documentation, and version history are stored.
 
 A repository may contain:
 
@@ -818,7 +817,7 @@ The most important concepts covered in this tutorial are:
 | Branch | Separate line of development |
 | Pull Request | Proposal to integrate changes |
 | Issue | Task, problem, or improvement suggestion |
-| Fork | Personal copy of another repository |
+| Fork | Copy of another repository under a user or organization account |
 | Open Source | Software distributed under a license granting reuse and modification rights |
 
 ## Why Does This Matter for OpenBIM?
@@ -872,5 +871,7 @@ For AEC students, understanding GitHub is an opportunity to explore open-source 
 *Created for A3: Teach — Advanced OpenBIM.*
 
 *Video tutorial and documentation prepared as a peer-learning resource.*
+
+
 
 
