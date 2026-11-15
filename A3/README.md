@@ -40,9 +40,7 @@ Our video introduces GitHub, demonstrates its essential features, and explores i
 
 **Watch our tutorial here:**
 
-[Video Tutorial](**Watch our tutorial here:**
-
-[Video Tutorial](https://www.youtube.com/watch?v=Cb7ndjlgTb0))
+[Video Tutorial](https://www.youtube.com/watch?v=Cb7ndjlgTb0)
 
 
 ### Video Overview
