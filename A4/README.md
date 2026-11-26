@@ -148,3 +148,89 @@ A geometrically aligned column does not necessarily represent a verified structu
 The final interpretation of the results remains the responsibility of the structural engineer.
 
 The classification rules, analysis parameters and geometric assumptions must be verified using the Building 308 IFC model.
+
+### Phase 4 – Main Workflow and Results Export
+
+The `main.py` script provides the main entry point for the Vertical Load Path Checker.
+
+It imports the IFC extraction functions from `ifc_reader.py` and the column classification and alignment analysis functions from `team_tool.py`.
+
+The complete workflow is organised into four phases:
+
+1. IFC element extraction.
+2. Column classification.
+3. Vertical load path analysis.
+4. Results and CSV export.
+
+The IFC model is accessed through a local file path defined in `main.py`. The model is not included in the GitHub repository.
+
+The tool automatically generates an output folder containing the following CSV files:
+
+| Output file | Description |
+|---|---|
+| Element inventory | Extracted structural elements, properties and geometry. |
+| Column alignment | Horizontal offsets, vertical gaps, matching columns and alignment results. |
+| Unclassified columns | Columns that could not be reliably classified. |
+| Analysis summary | Overall classification and alignment statistics. |
+
+The results are also displayed in the Python terminal to provide immediate feedback to the user.
+
+The tool reports missing information and unavailable geometry to support transparent interpretation of the results.
+
+The alignment percentage is calculated only for evaluated column pairs. Columns without an eligible support or with missing geometry are reported separately.
+
+The output supports structural design coordination by identifying potential column misalignments that require further investigation.
+
+The results are intended to support engineering judgement rather than replace structural calculations.
+
+### Instructions to run the tool
+
+#### Requirements
+
+- Python 3
+- IfcOpenShell
+- A locally stored Building 308 IFC model
+
+#### Installation
+
+Open the A4 folder in Visual Studio Code and install the required dependency:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+#### Model configuration
+
+Open `main.py` and replace the example model path with the actual location of the IFC file on your computer.
+
+```python
+model_path = Path(
+    r"C:/Users/YourName/Documents/Building308.ifc"
+)
+```
+
+The IFC model must remain outside the GitHub repository.
+
+#### Execution
+
+Run the following command in the terminal:
+
+```bash
+python main.py
+```
+
+On systems where Python is accessed using `python3`, use:
+
+```bash
+python3 main.py
+```
+
+#### Results
+
+After execution, the analysis results are stored in the automatically generated `output` folder.
+
+The CSV files can be opened in Microsoft Excel or another spreadsheet application for further investigation and documentation.
+
+#### Validation status
+
+The implementation must be tested using the actual Building 308 IFC model to verify the classification rules, geometry extraction, information availability and suitability of the screening tolerances.
