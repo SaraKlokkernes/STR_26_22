@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ids:ids xmlns:ids="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS https://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+  <ids:info><ids:title>Group 22 - Column information readiness</ids:title><ids:description>Information requirements for column alignment screening.</ids:description></ids:info>
+  <ids:specifications>
+    <ids:specification name="Column information" ifcVersion="IFC4 IFC4X3_ADD2" identifier="STR22-01">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded"><ids:entity><ids:name><ids:simpleValue>IFCCOLUMN</ids:simpleValue></ids:name></ids:entity></ids:applicability>
+      <ids:requirements>
+        <ids:attribute cardinality="required"><ids:name><ids:simpleValue>GlobalId</ids:simpleValue></ids:name></ids:attribute>
+        <ids:material cardinality="required"/>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required"><ids:propertySet><ids:simpleValue>Pset_ColumnCommon</ids:simpleValue></ids:propertySet><ids:baseName><ids:simpleValue>LoadBearing</ids:simpleValue></ids:baseName></ids:property>
+        <ids:property dataType="IFCLABEL" cardinality="required" instructions="Proposed exchange convention: use New or Existing for retained columns in the analysis scope."><ids:propertySet><ids:simpleValue>Pset_ColumnCommon</ids:simpleValue></ids:propertySet><ids:baseName><ids:simpleValue>Status</ids:simpleValue></ids:baseName><ids:value><xs:restriction base="xs:string"><xs:enumeration value="NEW"/><xs:enumeration value="EXISTING"/></xs:restriction></ids:value></ids:property>
+      </ids:requirements>
+    </ids:specification>
+  </ids:specifications>
+</ids:ids>
