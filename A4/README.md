@@ -1,4 +1,4 @@
-# A4 – Tool Development
+ # A4 – Tool Development
 
 ## Vertical Load Path Checker
 
@@ -6,231 +6,365 @@
 **Focus area:** STR – Structures  
 **Role:** Analyst  
 **Project:** Building 308  
-**BIM purpose:** Analyse  
-**BIM use case:** Design Coordination  
+**Software:** Python, IfcOpenShell, Visual Studio Code, GitHub
 
-## 00 – Preparation
+## 1. About the Tool
 
-### Working approach
+### Problem and Claim
 
-Following the use case analysis developed in Assignment A2, we continue in the role of a Analyst within the structural focus area.
+The structural design of the Building 308 transformation requires consideration of the relationship between newly introduced glulam columns and existing load-bearing structural elements.
 
-Our objective is to develop a Python-based tool that analyses the spatial relationship between new glulam columns and existing load-bearing columns in the Building 308 IFC model.
+The claim developed in Assignment A2 is:
 
-The tool follows a modular structure, allowing the IFC data extraction and structural alignment analysis to be developed separately and potentially integrated into a larger structural checking workflow.
+> New glulam columns should be positioned directly above existing load-bearing elements wherever possible to establish direct vertical load paths.
 
-The development builds upon the existing Vertical Load Path Checker and extends its structural element extraction functionality with a column alignment assessment.
+The objective of the tool is to support the structural engineer in investigating this claim through an automated geometric analysis of IFC model information.
 
-### Tool objective
+The current implementation focuses on column-to-column alignment.
 
-The objective of the tool is to investigate whether new glulam columns are positioned directly above existing load-bearing columns, supporting the intended direct vertical load paths described in the structural report.
+### Source of the Claim
 
-The tool identifies potential horizontal misalignments and provides results that can support structural engineers during design coordination.
+The claim is based on the structural design principles described in Structural Report 2601:
 
-### Software and tools
+- Section 2.4, page 4.
+- Section 8.1, page 20.
 
-- Python – development of the analysis tool.
-- IfcOpenShell – extraction of IFC information and geometry.
-- Visual Studio Code – code development and testing.
-- GitHub – version control and collaboration.
-- Blender / Bonsai – visual inspection and verification of the IFC model.
+The tool translates the design principle identified in Assignment A2 into a computational workflow.
 
-### Repository structure
+### Business Value
 
-The tool is developed within the A4 folder of the group repository.
+The tool supports a more efficient structural design review by reducing the need for repetitive manual inspections of the BIM model.
 
-The intended file structure consists of:
+Potential benefits include:
 
-- `main.py` – main program and execution of the analysis workflow.
-- `ifc_reader.py` – extraction of structural elements, properties and geometry.
-- `team_tool.py` – column classification and alignment analysis.
-- `requirements.txt` – required Python dependencies.
-- `requirements.ids` – information requirements for the IFC model.
-- `README.md` – documentation of the tool.
-- `.gitignore` – exclusion of local IFC model files from the repository.
+- Faster identification of potential column misalignments.
+- Improved structural design coordination.
+- Consistent and repeatable geometric checks.
+- Improved documentation of missing model information.
+- Reduced manual modelling and coordination effort.
 
-The IFC model is stored locally and is not included in the GitHub repository.
+### Societal Value
 
-## 01 – Tool Development
+Improved coordination of structural load paths may contribute to reduced construction errors, unnecessary material consumption and rework.
+
+The tool supports informed engineering decisions but does not independently verify structural safety.
+
+## 2. As-Is Workflow
+
+In the conventional workflow, the structural engineer manually opens the BIM model, identifies new and existing structural elements, inspects their spatial relationships and records potential misalignments.
+
+This process requires repeated visual inspections and depends on the availability and interpretation of model information.
+
+The manual process can be time-consuming, particularly when a large number of structural elements must be reviewed.
+
+## 3. To-Be Workflow
+
+The proposed workflow introduces automated IFC-based information extraction, classification and geometric analysis.
+
+The workflow consists of:
+
+1. Access the local IFC model.
+2. Extract structural elements and relevant properties.
+3. Identify new glulam columns and existing load-bearing columns.
+4. Check the availability of required information.
+5. Calculate geometric relationships between eligible column pairs.
+6. Identify potential misalignments.
+7. Export results for structural engineering review.
+
+If required information is missing, the affected elements are reported rather than assigned an unsupported classification.
+
+## 4. Tool Architecture
+
+The tool is organised into three Python modules.
+
+| File | Function |
+|---|---|
+| `main.py` | Main entry point, workflow execution and results export. |
+| `ifc_reader.py` | IFC model access, structural element extraction, property extraction and geometry processing. |
+| `team_tool.py` | Column classification, geometric alignment analysis and result generation. |
+| `requirements.txt` | Python dependencies. |
+| `requirements.ids` | Proposed machine-readable information requirements. |
+| `.gitignore` | Exclusion of local IFC models and generated files. |
+
+The modular architecture separates IFC data extraction from the analytical logic and allows the individual components to be maintained independently.
+
+## 5. Tool Description
 
 ### Phase 1 – IFC Element Extraction
 
-The IFC reader provides the input data required for the structural column alignment analysis.
-
-The existing `ifc_reader.py` module has been extended to extract additional semantic and geometric information from the IFC model.
+IfcOpenShell is used to access the IFC model and extract structural elements.
 
 The extracted information includes:
 
-- IFC element GlobalId and name.
-- IFC entity and structural category.
-- Assigned element type and material.
+- IFC entity type.
+- GlobalId.
+- Element name.
+- Element type.
 - Building storey.
-- Load-bearing properties.
+- Material.
+- Load-bearing property.
 - Construction status.
-- Global bounding box coordinates.
-- Bounding box centre coordinates and element height.
+- Geometric bounding box.
+- Geometric centre coordinates.
 
-The geometry is extracted in global model coordinates using metres as a consistent unit of measurement.
-
-The horizontal centre coordinates are calculated from the minimum and maximum bounding box coordinates. For regular vertical columns, these coordinates provide an approximation of the column centreline.
-
-Missing material, construction status or load-bearing information is reported as unknown rather than assumed.
-
-The extracted information forms the basis for the subsequent identification of new glulam columns and existing load-bearing columns.
-
-The separation of IFC data extraction and structural analysis supports a modular workflow and allows the extracted information to be reused in other structural checking tools.
-
-The extraction method and its assumptions are subject to verification using the Building 308 IFC model.
-
+The extracted geometry is processed using consistent spatial coordinates and units.
 
 ### Phase 2 – Column Classification
 
-The `team_tool.py` module receives the extracted structural element information from the IFC reader and identifies the columns relevant to the analysis.
+The extracted columns are classified according to their material, construction status and load-bearing information.
 
-The columns are classified into four categories:
+The relevant categories are:
 
 - New glulam columns.
 - Existing load-bearing columns.
-- Unclassified columns with insufficient or unsupported information.
-- Other columns outside the scope of the analysis.
+- Other columns.
+- Unclassified columns.
 
-New glulam columns are identified using material information and construction status. Existing load-bearing columns are identified using construction status and load-bearing properties.
-
-Columns that cannot be classified reliably are reported separately. This prevents missing IFC information from being interpreted as a confirmed structural condition.
+Elements with insufficient information are reported separately.
 
 ### Phase 3 – Vertical Load Path Analysis
 
-The analysis investigates the spatial relationship between new glulam columns and existing load-bearing columns.
+The tool investigates the spatial relationship between new glulam columns and existing load-bearing columns.
 
-For each new glulam column, the tool identifies potential existing supports located at a relevant level below the new column.
+The horizontal offset is calculated using the difference between the X and Y coordinates of the geometric bounding box centres.
 
-The vertical relationship is evaluated using the difference between the bottom elevation of the new column and the top elevation of the existing column.
+Horizontal offset:
 
-The horizontal offset is calculated using the X and Y centre coordinates of the respective column bounding boxes.
+d = sqrt((Xnew - Xexisting)^2 + (Ynew - Yexisting)^2)
 
-The closest eligible existing load-bearing column is selected for comparison.
+The vertical relationship is evaluated using the bottom elevation of the new column and the top elevation of the potential supporting column.
 
-The horizontal offset is calculated as the Euclidean distance between the two column centres in the XY plane.
+The tool uses configurable screening parameters for horizontal alignment, vertical separation and permitted vertical overlap.
 
-#### Analysis parameters
+The current example horizontal tolerance is 150 mm. The example maximum vertical gap is 500 mm.
 
-The initial analysis uses the following configurable parameters:
+These parameters are preliminary screening assumptions and must be reviewed by the structural engineer before professional application.
 
-| Parameter | Initial value |
-|---|---:|
-| Horizontal alignment tolerance | 150 mm |
-| Maximum vertical gap | 500 mm |
-| Permitted vertical overlap | 50 mm |
+The results indicate whether further investigation is required.
 
-These values are preliminary screening parameters and are not derived from structural design standards. They must be reviewed and adjusted according to the actual building geometry and the requirements of the structural engineer.
+### Phase 4 – Results and Export
 
-#### Analysis results
+The tool exports the extracted information and analysis results into CSV files.
 
-Each new glulam column receives one of the following results:
-
-- **ALIGNED:** The horizontal offset is within the defined screening tolerance.
-- **REVIEW:** The horizontal offset exceeds the defined screening tolerance.
-- **NO_SUPPORT_FOUND:** No eligible existing load-bearing column was identified within the vertical search range.
-- **MISSING_GEOMETRY:** The required geometric information is unavailable.
-
-The tool also generates a summary of the classified columns and alignment results. The alignment percentage is calculated using only column pairs for which a horizontal offset could be evaluated. Unclassified columns and columns without an eligible support are reported separately.
-
-#### Limitations
-
-The tool provides a geometric assessment of potential vertical load paths. It does not perform structural capacity calculations or verify the structural adequacy of connections, slabs, beams or foundations.
-
-Bounding box centres are used as an approximation of the column centrelines. This approach is most suitable for regular vertical columns.
-
-The analysis is limited to column-to-column relationships. Alternative load transfer mechanisms through walls, beams or other structural elements are not assessed.
-
-A geometrically aligned column does not necessarily represent a verified structural load path. Similarly, a column flagged for review does not necessarily indicate a structural design error.
-
-The final interpretation of the results remains the responsibility of the structural engineer.
-
-The classification rules, analysis parameters and geometric assumptions must be verified using the Building 308 IFC model.
-
-### Phase 4 – Main Workflow and Results Export
-
-The `main.py` script provides the main entry point for the Vertical Load Path Checker.
-
-It imports the IFC extraction functions from `ifc_reader.py` and the column classification and alignment analysis functions from `team_tool.py`.
-
-The complete workflow is organised into four phases:
-
-1. IFC element extraction.
-2. Column classification.
-3. Vertical load path analysis.
-4. Results and CSV export.
-
-The IFC model is accessed through a local file path defined in `main.py`. The model is not included in the GitHub repository.
-
-The tool automatically generates an output folder containing the following CSV files:
-
-| Output file | Description |
+| Output | Description |
 |---|---|
-| Element inventory | Extracted structural elements, properties and geometry. |
-| Column alignment | Horizontal offsets, vertical gaps, matching columns and alignment results. |
-| Unclassified columns | Columns that could not be reliably classified. |
-| Analysis summary | Overall classification and alignment statistics. |
+| `element_inventory.csv` | Extracted structural elements and properties. |
+| `column_alignment.csv` | Geometric relationships and alignment results. |
+| `unclassified_columns.csv` | Elements with insufficient classification information. |
+| `analysis_summary.csv` | Overall analysis statistics. |
 
-The results are also displayed in the Python terminal to provide immediate feedback to the user.
+The results are also displayed in the Python terminal.
 
-The tool reports missing information and unavailable geometry to support transparent interpretation of the results.
+## 6. Advanced Building Design
 
-The alignment percentage is calculated only for evaluated column pairs. Columns without an eligible support or with missing geometry are reported separately.
+### Design Stage
 
-The output supports structural design coordination by identifying potential column misalignments that require further investigation.
+The proposed application is Stage C – Design, subject to confirmation against the course-specific Advanced Building Design stage definitions.
 
-The results are intended to support engineering judgement rather than replace structural calculations.
+The tool supports the evaluation and coordination of structural design decisions before construction.
 
-### Instructions to run the tool
+### Relevant Subjects
 
-#### Requirements
+- Structural analysis.
+- Building information modelling.
+- Computational design.
+- Design coordination.
+- Information management.
+- Model quality assurance.
 
-- Python 3
-- IfcOpenShell
-- A locally stored Building 308 IFC model
+### Required Model Information
 
-#### Installation
+| Information | Purpose |
+|---|---|
+| IFC entity type | Identify structural columns. |
+| GlobalId | Identify and trace individual elements. |
+| Material | Identify glulam columns. |
+| Construction status | Distinguish new and existing elements. |
+| LoadBearing | Identify load-bearing elements. |
+| Building storey | Provide spatial context. |
+| Geometry | Determine spatial relationships. |
+| Coordinate system and units | Enable consistent geometric calculations. |
 
-Open the A4 folder in Visual Studio Code and install the required dependency:
+## 7. Information Delivery Specification
+
+The proposed IDS defines information requirements for structural columns.
+
+The purpose is to assess whether the IFC model contains the information required for reliable column classification.
+
+The requirements include element identification, material information, load-bearing information and construction status.
+
+The IDS complements the Python tool by checking semantic model readiness.
+
+The geometric alignment calculation, coordinate consistency and structural interpretation remain part of the Python workflow and subsequent engineering review.
+
+The proposed property conventions must be agreed with the model author.
+
+## 8. Installation and Execution
+
+### Requirements
+
+- Python 3.
+- IfcOpenShell.
+- Visual Studio Code or another Python development environment.
+- A locally stored IFC model.
+
+### Installation
+
+Open the A4 directory in the terminal and execute:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-#### Model configuration
+### IFC Model Configuration
 
-Open `main.py` and replace the example model path with the actual location of the IFC file on your computer.
+The IFC model must be stored locally and must not be uploaded to the GitHub repository.
+
+Open `main.py` and modify the model path to match the local file location.
+
+Example for macOS:
 
 ```python
-model_path = Path(
-    r"C:/Users/YourName/Documents/Building308.ifc"
-)
+model_path = Path.home() / "Downloads" / "B308X.ifc"
 ```
 
-The IFC model must remain outside the GitHub repository.
+Example for Windows:
 
-#### Execution
+```python
+model_path = Path.home() / "Documents" / "B308X.ifc"
+```
 
-Run the following command in the terminal:
+The script checks whether the specified file exists before starting the analysis.
+
+### Execution
+
+Run:
 
 ```bash
 python main.py
 ```
 
-On systems where Python is accessed using `python3`, use:
+Depending on the local Python installation, the command may alternatively be:
 
 ```bash
 python3 main.py
 ```
 
-#### Results
+The generated results are stored in the local `output` directory.
 
-After execution, the analysis results are stored in the automatically generated `output` folder.
+On macOS, this directory can be opened using:
 
-The CSV files can be opened in Microsoft Excel or another spreadsheet application for further investigation and documentation.
+```bash
+open output
+```
 
-#### Validation status
+## 9. Tool Testing and Validation
 
-The implementation must be tested using the actual Building 308 IFC model to verify the classification rules, geometry extraction, information availability and suitability of the screening tolerances.
+The initial implementation was executed successfully using the Building 308 IFC model named `B308X.ifc`.
+
+The test was performed using macOS, Python 3.12.12 and IfcOpenShell 0.9.0.post1.
+
+### Actual Test Results
+
+| Indicator | Result |
+|---|---:|
+| Extracted columns | 211 |
+| Columns with available geometry | 211 |
+| Columns with concrete material | 211 |
+| Columns with LoadBearing = True | 211 |
+| Columns with unknown construction status | 211 |
+| Identified new glulam columns | 0 |
+| Classified existing load-bearing columns | 0 |
+| Unclassified columns | 211 |
+| Evaluated column pairs | 0 |
+| Alignment percentage | Not available |
+
+### Distribution by Building Storey
+
+| Building storey | Number of columns |
+|---|---:|
+| ES_Stue | 94 |
+| E1_1. sal | 117 |
+| Total | 211 |
+
+All extracted columns were associated with the following material:
+
+`DTU_Concrete_Generic_Natural_Mat`
+
+### Interpretation
+
+The IFC model was accessed successfully, structural information and geometry were extracted, and the analysis summary was exported.
+
+However, the extracted column information did not contain a recognised construction status, and no new glulam columns were identified.
+
+The supplied model may represent the existing building rather than the complete proposed transformation. This must be confirmed with the model author.
+
+Consequently, the structural claim could not be evaluated using the available input data.
+
+This result demonstrates the importance of model readiness and reliable information delivery before automated structural analysis.
+
+### Test Status
+
+| Test | Status |
+|---|---|
+| IFC model access | Passed |
+| Column extraction | Passed |
+| Geometry availability | Passed |
+| Column classification | Inconclusive due to input information |
+| Column alignment analysis | Not evaluated |
+| CSV export | Confirmed for the uploaded inventory and summary files |
+| Independent geometric validation | Pending |
+
+## 10. Limitations
+
+The tool provides preliminary geometric screening rather than structural verification.
+
+The following limitations apply:
+
+- The analysis depends on the quality and completeness of the IFC model.
+- The current implementation focuses on column-to-column relationships.
+- Other supporting elements, such as walls, beams and foundations, are not fully evaluated as alternative load paths.
+- Bounding box centres are approximations of structural column axes.
+- Geometric alignment does not demonstrate structural capacity or connection adequacy.
+- The screening tolerances require engineering validation.
+- Separate existing and proposed models may require a coordinated model exchange before analysis.
+
+## 11. Future Development
+
+Future development should focus on:
+
+- Obtaining the proposed transformation model containing new glulam columns.
+- Confirming the construction status property convention.
+- Validating material classification.
+- Checking the IDS against the relevant IFC schema and model.
+- Testing aligned and misaligned column pairs.
+- Comparing selected results with model geometry in Blender/Bonsai.
+- Extending the analysis to other potential supporting structural elements.
+- Reviewing the screening parameters with the structural engineer.
+
+The implementation may be integrated into a broader automated BIM analysis workflow.
+
+The Future AEC Software Specification Data Framework provides a reference for further development of interoperable and modular AEC tools:
+
+https://future-aec-software-specification.com/data-framework/
+
+## 12. Conclusion
+
+The Vertical Load Path Checker demonstrates how IFC model information can be extracted and processed to support structural design coordination.
+
+The initial test successfully extracted 211 structural columns and their geometric information.
+
+However, the absence of recognised construction status information and identified new glulam columns prevented the evaluation of the structural claim.
+
+The tool therefore highlights both the potential of automated structural model analysis and the importance of clearly defined information delivery requirements.
+
+Further validation using the proposed transformation model is required before a final conclusion regarding the structural claim can be drawn.
+
+## References
+
+- Structural Report 2601, Section 2.4 and Section 8.1, as referenced in Assignment A2.
+- Assignment A2 – Group 22.
+- Building 308 IFC model – B308X.ifc.
+- IfcOpenShell: https://ifcopenshell.org/
+- buildingSMART Information Delivery Specification: https://technical.buildingsmart.org/projects/information-delivery-specification-ids/
+- Future AEC Software Specification: https://future-aec-software-specification.com/data-framework/
