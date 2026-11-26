@@ -13,7 +13,7 @@
 
 ### Working approach
 
-Following the use case analysis developed in Assignment A2, Group 22 continues in the role of Analyst within the structural focus area.
+Following the use case analysis developed in Assignment A2, we continue in the role of a Analyst within the structural focus area.
 
 Our objective is to develop a Python-based tool that analyses the spatial relationship between new glulam columns and existing load-bearing columns in the Building 308 IFC model.
 
