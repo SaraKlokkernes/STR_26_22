@@ -81,3 +81,70 @@ The extracted information forms the basis for the subsequent identification of n
 The separation of IFC data extraction and structural analysis supports a modular workflow and allows the extracted information to be reused in other structural checking tools.
 
 The extraction method and its assumptions are subject to verification using the Building 308 IFC model.
+
+
+### Phase 2 – Column Classification
+
+The `team_tool.py` module receives the extracted structural element information from the IFC reader and identifies the columns relevant to the analysis.
+
+The columns are classified into four categories:
+
+- New glulam columns.
+- Existing load-bearing columns.
+- Unclassified columns with insufficient or unsupported information.
+- Other columns outside the scope of the analysis.
+
+New glulam columns are identified using material information and construction status. Existing load-bearing columns are identified using construction status and load-bearing properties.
+
+Columns that cannot be classified reliably are reported separately. This prevents missing IFC information from being interpreted as a confirmed structural condition.
+
+### Phase 3 – Vertical Load Path Analysis
+
+The analysis investigates the spatial relationship between new glulam columns and existing load-bearing columns.
+
+For each new glulam column, the tool identifies potential existing supports located at a relevant level below the new column.
+
+The vertical relationship is evaluated using the difference between the bottom elevation of the new column and the top elevation of the existing column.
+
+The horizontal offset is calculated using the X and Y centre coordinates of the respective column bounding boxes.
+
+The closest eligible existing load-bearing column is selected for comparison.
+
+The horizontal offset is calculated as the Euclidean distance between the two column centres in the XY plane.
+
+#### Analysis parameters
+
+The initial analysis uses the following configurable parameters:
+
+| Parameter | Initial value |
+|---|---:|
+| Horizontal alignment tolerance | 150 mm |
+| Maximum vertical gap | 500 mm |
+| Permitted vertical overlap | 50 mm |
+
+These values are preliminary screening parameters and are not derived from structural design standards. They must be reviewed and adjusted according to the actual building geometry and the requirements of the structural engineer.
+
+#### Analysis results
+
+Each new glulam column receives one of the following results:
+
+- **ALIGNED:** The horizontal offset is within the defined screening tolerance.
+- **REVIEW:** The horizontal offset exceeds the defined screening tolerance.
+- **NO_SUPPORT_FOUND:** No eligible existing load-bearing column was identified within the vertical search range.
+- **MISSING_GEOMETRY:** The required geometric information is unavailable.
+
+The tool also generates a summary of the classified columns and alignment results. The alignment percentage is calculated using only column pairs for which a horizontal offset could be evaluated. Unclassified columns and columns without an eligible support are reported separately.
+
+#### Limitations
+
+The tool provides a geometric assessment of potential vertical load paths. It does not perform structural capacity calculations or verify the structural adequacy of connections, slabs, beams or foundations.
+
+Bounding box centres are used as an approximation of the column centrelines. This approach is most suitable for regular vertical columns.
+
+The analysis is limited to column-to-column relationships. Alternative load transfer mechanisms through walls, beams or other structural elements are not assessed.
+
+A geometrically aligned column does not necessarily represent a verified structural load path. Similarly, a column flagged for review does not necessarily indicate a structural design error.
+
+The final interpretation of the results remains the responsibility of the structural engineer.
+
+The classification rules, analysis parameters and geometric assumptions must be verified using the Building 308 IFC model.
