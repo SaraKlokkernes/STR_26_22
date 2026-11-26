@@ -50,3 +50,34 @@ The intended file structure consists of:
 - `.gitignore` – exclusion of local IFC model files from the repository.
 
 The IFC model is stored locally and is not included in the GitHub repository.
+
+## 01 – Tool Development
+
+### Phase 1 – IFC Element Extraction
+
+The IFC reader provides the input data required for the structural column alignment analysis.
+
+The existing `ifc_reader.py` module has been extended to extract additional semantic and geometric information from the IFC model.
+
+The extracted information includes:
+
+- IFC element GlobalId and name.
+- IFC entity and structural category.
+- Assigned element type and material.
+- Building storey.
+- Load-bearing properties.
+- Construction status.
+- Global bounding box coordinates.
+- Bounding box centre coordinates and element height.
+
+The geometry is extracted in global model coordinates using metres as a consistent unit of measurement.
+
+The horizontal centre coordinates are calculated from the minimum and maximum bounding box coordinates. For regular vertical columns, these coordinates provide an approximation of the column centreline.
+
+Missing material, construction status or load-bearing information is reported as unknown rather than assumed.
+
+The extracted information forms the basis for the subsequent identification of new glulam columns and existing load-bearing columns.
+
+The separation of IFC data extraction and structural analysis supports a modular workflow and allows the extracted information to be reused in other structural checking tools.
+
+The extraction method and its assumptions are subject to verification using the Building 308 IFC model.
