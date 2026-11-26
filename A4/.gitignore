@@ -11,9 +11,12 @@ __pycache__/
 .venv/
 venv/
 
-# Generated analysis files
+# Generated analysis results
+output/
 *_element_inventory.csv
 *_column_alignment.csv
+*_unclassified_columns.csv
+*_analysis_summary.csv
 
 # Operating system files
 .DS_Store
