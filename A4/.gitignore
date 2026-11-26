@@ -1,0 +1,20 @@
+# Local IFC model files
+*.ifc
+*.ifczip
+*.ifcxml
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Generated analysis files
+*_element_inventory.csv
+*_column_alignment.csv
+
+# Operating system files
+.DS_Store
+Thumbs.db
