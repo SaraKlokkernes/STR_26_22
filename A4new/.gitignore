@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+
+# Local IFC models are never committed
+data/*
+!data/README.md
+*.ifc
+*.ifczip
+*.ifcxml
+
+# Operating system files
+.DS_Store
+Thumbs.db

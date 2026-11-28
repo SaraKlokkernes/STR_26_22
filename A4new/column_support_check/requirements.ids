@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ids:ids xmlns:ids="http://standards.buildingsmart.org/IDS"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+  <ids:info>
+    <ids:title>Group 22 STR - Column support check: model readiness</ids:title>
+    <ids:description>Information the IFC model must contain before the column support check (column_support_check) can give reliable results.</ids:description>
+    <ids:purpose>Check that columns, slabs and possible supporting elements are modelled and described so the vertical load path below each column can be traced.</ids:purpose>
+    <ids:milestone>Advanced Building Design, stage C</ids:milestone>
+  </ids:info>
+  <ids:specifications>
+
+    <ids:specification name="Columns are placed on a storey and identified as load-bearing" ifcVersion="IFC4 IFC4X3_ADD2" identifier="STR22-01"
+                       description="Every column is checked. The storey is used to report results and LoadBearing tells the engineer whether the column carries load."
+                       instructions="Model columns as IfcColumn (not as generic elements), contain them in an IfcBuildingStorey and fill Pset_ColumnCommon.LoadBearing.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity><ids:name><ids:simpleValue>IFCCOLUMN</ids:simpleValue></ids:name></ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE" cardinality="required">
+          <ids:entity><ids:name><ids:simpleValue>IFCBUILDINGSTOREY</ids:simpleValue></ids:name></ids:entity>
+        </ids:partOf>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet><ids:simpleValue>Pset_ColumnCommon</ids:simpleValue></ids:propertySet>
+          <ids:baseName><ids:simpleValue>LoadBearing</ids:simpleValue></ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+
+    <ids:specification name="Slabs have a predefined type" ifcVersion="IFC4 IFC4X3_ADD2" identifier="STR22-02"
+                       description="The tool separates base slabs (load goes into the ground) from suspended floor slabs (load needs a support below)."
+                       instructions="Set PredefinedType on IfcSlab to FLOOR, ROOF, LANDING or BASESLAB. Ground-bearing slabs must be BASESLAB.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity><ids:name><ids:simpleValue>IFCSLAB</ids:simpleValue></ids:name></ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:attribute cardinality="required">
+          <ids:name><ids:simpleValue>PredefinedType</ids:simpleValue></ids:name>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="FLOOR"/>
+              <xs:enumeration value="ROOF"/>
+              <xs:enumeration value="LANDING"/>
+              <xs:enumeration value="BASESLAB"/>
+            </xs:restriction>
+          </ids:value>
+        </ids:attribute>
+      </ids:requirements>
+    </ids:specification>
+
+    <ids:specification name="Walls state whether they are load-bearing" ifcVersion="IFC4 IFC4X3_ADD2" identifier="STR22-03"
+                       description="Walls with LoadBearing = FALSE are not accepted as support under a column. Missing values are treated as possible supports and reported."
+                       instructions="Fill Pset_WallCommon.LoadBearing on all walls.">
+      <ids:applicability minOccurs="0" maxOccurs="unbounded">
+        <ids:entity><ids:name><ids:simpleValue>IFCWALL</ids:simpleValue></ids:name></ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet><ids:simpleValue>Pset_WallCommon</ids:simpleValue></ids:propertySet>
+          <ids:baseName><ids:simpleValue>LoadBearing</ids:simpleValue></ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+
+    <ids:specification name="Beams state whether they are load-bearing" ifcVersion="IFC4 IFC4X3_ADD2" identifier="STR22-04"
+                       description="Beams under a slab can carry a column load. Beams with LoadBearing = FALSE are not accepted as support."
+                       instructions="Fill Pset_BeamCommon.LoadBearing on all beams.">
+      <ids:applicability minOccurs="0" maxOccurs="unbounded">
+        <ids:entity><ids:name><ids:simpleValue>IFCBEAM</ids:simpleValue></ids:name></ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet><ids:simpleValue>Pset_BeamCommon</ids:simpleValue></ids:propertySet>
+          <ids:baseName><ids:simpleValue>LoadBearing</ids:simpleValue></ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+
+  </ids:specifications>
+</ids:ids>
