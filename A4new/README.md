@@ -31,11 +31,6 @@ The claim we check:
 > supporting element (column, load-bearing wall, beam or foundation), and
 > do not land on a slab with no support below.
 
-> **TODO (group):** Insert the exact wording, section and page from the
-> structural report for Building 308 that states this load path principle.
-> Our A2 claim referred to Structural Report 2601, Section 2.4 (p. 4) and
-> Section 8.1 (p. 20).
-
 This widens the claim from A2. A2 only looked at new glulam columns over
 existing columns. The tool now checks **every column in the building**, of
 any material, against **any supporting element** below.
